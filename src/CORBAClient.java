@@ -207,10 +207,25 @@ public class CORBAClient {
                             System.out.println(inputParts[1] + " room was created\n");
                         }
  
+                    // NUEVA FUNCIONALIDAD
+                    // si 'input' comienza con la palabra clave '/delete'
+                    } else if (input.startsWith("/delete")){
+                        // eliminar una sala llamando al metodo 'deleteRoom' si la sala existe
+                        String[] inputParts = input.split(Pattern.quote(" "));
+                        String response = serverInterfaceImpl.deleteRoom(inputParts[1]);
+                        //Respuesta por terminal dependiendo de si existe o no la sala que se quiere eliminar
+                        if (response.equals("not exist")) {
+                            System.out.println(inputParts[1] + " room does not exist\n");
+                        } else if (response.equals("deleted")) {
+                            System.out.println(inputParts[1] + " room was deleted\n");
+                        } else if (response.equals("general")) {
+                            System.out.println(inputParts[1] + " room can not be deleted. Default room\n");
+                        }
+
                     // enviar mensaje a todos los usurios conectados llamando al metodo 'newMessages'
                     // al metodo le pasamos la sala a la que estamos conectada ('connectedRoom'),
-                    // el nombre de usuario ('userName') y el mensaje ('input')  
-                    } else {
+                    // el nombre de usuario ('userName') y el mensaje ('input') 
+                    }else {
                         serverInterfaceImpl.newMessages(connectedRoom, "@" + userName + ":" + input);
                         
                     }

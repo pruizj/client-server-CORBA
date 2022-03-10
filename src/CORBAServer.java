@@ -191,6 +191,36 @@ class ServerInterfaceImpl extends ServerInterfacePOA {
 		return response;
 	}
 
+	// NUEVA FUNCIONALIDAD
+	// metodo para eliminar una sala
+	public String deleteRoom(String roomName) {
+		String response = "";
+
+		// caso la sala existe 
+		if (rooms.contains(roomName)) {
+			if(roomName.equals("general")){
+				response = "general";
+			}else{
+				// si el usuario esta en la sala lo elimino de ella
+				for (String s : names) {
+					if (roomUsers.contains(roomName + " " + s)) {
+						roomUsers.remove(roomName + " " + s);
+					}
+				}	
+				// elimino la sala de la lista de salas
+				rooms.remove(roomName);
+				// devuelvo mensaje de sala eliminada
+				response = "deleted";
+			}
+
+		// caso la sala no existe devuelvo mensaje de error
+		} else {
+			response = "not exist";
+		}
+
+		return response;
+	}
+
 	// metodo de log out
 	// pasmaos por argumentos el nombre de usuario y la sala a la que esta conectada
 	public void disconnect(String userName, String roomName) {
