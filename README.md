@@ -1,31 +1,54 @@
-## Introduction
-This is a client-server chat application implemented using Java and CORBA.
+## CHAT-CORBA
+Esta es una aplicación de chat cliente-servidor implementada con Java y CORBA.
 
-### Compiling and Testing
-From the project root directory, open the terminal and run the following comands:
+## Funcionamiento 📋
+Esta aplicación consiste en un servidor y un cliente.
+El servidor permitir a los clientes:
+
+* Log in (nada más se incia el programa)
+* Crear salas de chat
+* Listar todas las salas existentes
+* Unirse a las salas de chat existentes
+* Enviar mensajes a salas de chat
+* Abandonar una sala de chat
+* Eliminar una sala de chat
+* Log out (commando exit)
+
+El cliente proporciona una interfaz que permite al usuario realizar las funciones anteriores.
+
+Una vez creadas las salas de chat, almacenan todos los datos (mensajes enviados a la sala) mientras existan.
+
+Cuando un usuario se conecta a una nueva sala, todos los mensajes anteriores de esta sala se muestran al usuario. Además, todos los mensajes enviados por el usuario se muestran a todos los demás clientes conectados a la misma sala con un retraso máximo de 1 segundo. Cuando un usuario sale de una sala, el servidor desconecta al usuario del sistema.
+
+### Compilación 🔧
+Desde el directorio raíz del proyecto, abrir la terminal y ejecutar los siguientes comandos:
     
-    mkdir bin
     idlj -td src/ -fall MyInterfaces.idl
     javac src/*.java src/ChatApp/*.java -d bin/
     orbd -ORBInitialPort 1050 -ORBInitialHost localhost
 
-Start the server by running the following command:
+Iniciar el servidor ejecutando el siguiente comando:
 
     java -cp bin/ CORBAServer -ORBInitialPort 1050 -ORBInitialHost localhost
 
-After the server started successfully, create multiple clients using the following command:
+Después de que el servidor se haya iniciado correctamente, crear varios clientes con el siguiente comando:
 
     java -cp bin/ CORBAClient -ORBInitialPort 1050 -ORBInitialHost localhost
 
-Before a client can connect to the web server, the client has to provide a user name to the server. The server then checks to make sure no any other connected client is using the  same user name. If the user name exist on the server, an error message is displayed asking the user to choose a different user name. Otherwise, the server register the user to the default 'general' room and inform all the users connected to this room that a new client is connected. 
+### Ejecución 🚀
+Antes de que un cliente pueda conectarse al servidor web, el cliente debe proporcionar un nombre de usuario al servidor (Log in). Luego, el servidor verifica de que ningún otro cliente conectado esté usando el mismo nombre de usuario. Si el nombre de usuario existe en el servidor, se muestra un mensaje de error que le pide al usuario que elija un nombre de usuario diferente. De lo contrario, el servidor registra al usuario en la sala por defecto 'general' e informa a todos los usuarios conectados a esta sala que se ha conectado un nuevo cliente.
 
-Use the created clients to interact with the server by performing various operations such as:
+Utilice los clientes creados para interactuar con el servidor realizando varias operaciones con los 
+siguientes comandos:
 
-  * Create chat-rooms by issuing the command **'/create roomName'**
-  * List all existing rooms by issuing the command **'/rooms'**
-  * Join existing chat-rooms by issuing the command **'/join roomName'**
-  * Send messages to chat-rooms by simply writing a message into the client text box and pressing the enter key or send button on the client
-  * Leave a chat-room by issuing the command **'/leave roomName'**
-  * List all users by issuing the command **'/users'**
+  * **'/create roomName'**
+  * **'/rooms'**
+  * **'/join roomName'**
+  * **'/leave roomName'**
+  * **'/users'**
+  * **'/delete roomName'**
+  * **'exit'**
+  * Envíar mensajes a salas de chat simplemente escribiendo un mensaje en el cuadro de texto del cliente y presionando la tecla Intro
 
-When a user connect to a new room, all the previous messages in this room are displayed to the user. In addition, all messages sent by the user are shown to all other clients connected to the same room with 1 second maximum delay. When a user leave a room, the server disconnect the user from the system.
+## Autor ✒️
+**Paula Ruiz Jiménez**
