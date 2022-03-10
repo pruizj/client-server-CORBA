@@ -20,6 +20,9 @@ Una vez creadas las salas de chat, almacenan todos los datos (mensajes enviados 
 
 Cuando un usuario se conecta a una nueva sala, todos los mensajes anteriores de esta sala se muestran al usuario. Además, todos los mensajes enviados por el usuario se muestran a todos los demás clientes conectados a la misma sala con un retraso máximo de 1 segundo. Cuando un usuario sale de una sala, el servidor desconecta al usuario del sistema.
 
+### Pre-requisitos 📦
+Se necesita instalar Java y el Kit de Desarrollo de Java (JDK). Además hay que añadir a la variable PATH la ruta de JDK y a la variable PATHCLASS la ruta del directorio principal de nuestro proyecto.
+
 ### Compilación 🔧
 Desde el directorio raíz del proyecto, abrir la terminal y ejecutar los siguientes comandos:
     
